@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useState } from "react";
 import Link from "next/link";
 import Header from "@/app/compoments/header";
+import { data } from "@/data/charData";
+import ContentRenderer from "@/app/compoments/contentRenderer";
 
 const tabs = [
     { key: "leadin", label: "Lead in" },
@@ -12,24 +15,36 @@ const tabs = [
 ];
 
 const leadinContent = [
-    {
-        title: "The Beginning",
-        body: "Nguyen Ha Anh grew up in a small town where everyone knew everyone. From a young age, she was fascinated by the stories people told — not just the words, but the emotions behind them. She started her journey in acting at the age of 10, participating in school plays and local theater productions.",
-    },
-    {
-        title: "Discovery",
-        body: "Her breakthrough came when she was discovered by a talent scout during a school performance. This led to her first television role, which opened up a world of opportunities. She quickly became known for her natural acting ability and her warm, engaging presence on screen.",
-    },
-    {
-        title: "Growth",
-        body: "Over the years, Ha Anh has continued to develop her craft, taking on increasingly challenging roles. She believes that every character she plays teaches her something new about herself and about the world around her. Her dedication to her art has made her one of the most promising young actresses of her generation.",
-    },
+    "For centuries, teenagers have played a substantial role in the workforce. In earlier times, they were often regarded as \u201Cminiature adults,\u201D working full-time in agriculture or factories to help support their families. However, the widespread of child labour laws alongside post\u2013World War II industrialisation marked a turning point, significantly reducing youth employment as focus was shifted on education and school activities instead, with part-time work largely limited to earning pocket money.",
+
+    "In recent years, however, teen employment has experienced a notable resurgence. According to recent reports, increased hiring demand across various sectors, coupled with rising wages, has driven what many describe as a \u201Ccomeback\u201D in teen participation. At the same time, data suggests that despite higher employment rates among Gen Z as of 2026, young people often prioritized work-life balance over traditional hustle, largely shaped by either academic pressure, parental support or high digital fluency. With this in mind, our team spoke with Nguyen Ha Anh, an acclaimed Vietnamese child actress who began her career as early as five years old, to gain insight into her perspective on entering the workforce at such an early age.",
+
+    "From our team interview with Ha Anh, it seems that in today\u2019s era of rapid economic change, adolescents are increasingly required to equip themselves with essential knowledge, skills and experiences to make informed financial decisions, thus finding suitable career paths. From managing personal expenses and pursuing passions to building a personal \u201Cbrand\u201D while still in school, even the smallest choices reflect the influence of various underlying factors. This raises an even more pressing question: What are the key determinants that shape the economic behavior of young people, specifically teenagers today? Having conducted research, our team has concluded that the main forces are: personal factors, family factors and external factors."
 ];
+
+const pagesData = data as unknown as Record<string, {
+    pageId: number;
+    title: string;
+    data: {
+        type: string;
+        content?: string[];
+        tableData?: {
+            headers: string[];
+            rows: string[][]
+        }
+    }[]
+}[]>;
 
 export default function CharacterDetail() {
     const [activeTab, setActiveTab] = useState("leadin");
+    const [currentPageIndex, setCurrentPageIndex] = useState(0);
 
-    const content = activeTab === "leadin" ? leadinContent : [];
+    const tabPages = activeTab !== "leadin" ? (pagesData as any)[activeTab] : undefined;
+    const totalPages = tabPages ? tabPages.length : 0;
+    const currentPage = tabPages ? tabPages[currentPageIndex] : undefined;
+
+    const hasPrev = currentPageIndex > 0;
+    const hasNext = tabPages && currentPageIndex < tabPages.length - 1;
 
     return (
         <main className="w-full min-h-screen flex items-center justify-center">
@@ -50,7 +65,7 @@ export default function CharacterDetail() {
                     {tabs.map((tab) => (
                         <button
                             key={tab.key}
-                            onClick={() => setActiveTab(tab.key)}
+                            onClick={() => { setActiveTab(tab.key); setCurrentPageIndex(0) }}
                             style={{
                                 fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
                                 fontSize: activeTab === tab.key ? 44 : 40,
@@ -78,24 +93,22 @@ export default function CharacterDetail() {
                         width: 960,
                         maxHeight: 'calc(100vh - 280px)',
                         background: '#F5F5F5CC',
-                        // border: '4px solid #092c66',
                         boxShadow: 'inset -4px -4px 0 0 rgba(0,0,0,0.2), inset 4px 4px 0 0 rgba(255,255,255,0.1)',
                         zIndex: 15,
                     }}
                 >
                     <div
                         className="border-y-9 border-[#004FAC]"
-                        style={{ 
+                        style={{
                             fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
                             fontSize: 96,
                             color: 'white',
                             textShadow: '0px 0px 12px #092c66',
                             WebkitTextStroke: `3px #092c66`,
-                            // padding: '24px 32px 16px',
-                            lineHeight: 0.8, 
-                            alignContent:`center`,
-                            paddingBottom:24,
-                            paddingLeft:24
+                            lineHeight: 0.8,
+                            alignContent: `center`,
+                            paddingBottom: 24,
+                            paddingLeft: 24
                         }}
                     >
                         {tabs.find(t => t.key === activeTab)?.label}
@@ -106,52 +119,104 @@ export default function CharacterDetail() {
                         style={{
                             padding: '24px 32px 32px',
                             overflowY: 'auto',
-                            maxHeight: 'calc(100vh - 400px)',
+                            maxHeight: 'calc(100vh - 430px)',
                             scrollbarWidth: 'thin',
                             scrollbarColor: '#092c66 #e0e8f0',
                         }}
                     >
-                        {content.map((item, i) => (
-                            <div key={i}>
+                        {/* leadin tab */}
+                        {activeTab === "leadin" ? (
+                            <ul className="list-disc pl-4 space-y-4"
+                                style={{
+                                    fontFamily: 'var(--font-teacher), monospace',
+                                    fontSize: 14,
+                                    color: '#1a2a4a',
+                                    lineHeight: 1.8,
+                                }}
+                            >
+                                {leadinContent.map((each, i) => (
+                                    <li key={i} className="text-2xl">
+                                        {each}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : currentPage ? (
+                            // not leadin tab
+                            <div>
                                 <h2
-                                    className=""
                                     style={{
-                                        fontFamily: "'Press Start 2P', monospace",
-                                        fontSize: 16,
-                                        color: '#092c66',
-                                        textShadow: '1px 1px 0px rgba(9,44,102,0.15)',
-                                        marginBottom: 8,
+                                        fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
+                                        fontSize: 24,
+                                        color: '#004FAC',
+                                        textShadow: '1px 1px 0px rgba(0,79,172,0.2)',
+                                        marginBottom: 16,
                                     }}
                                 >
-                                    {item.title}
+                                    {currentPage.title}
                                 </h2>
-                                <p
+                                <div
                                     style={{
-                                        fontFamily: 'var(--font-coder-crux), monospace',
+                                        fontFamily: 'var(--font-teacher), monospace',
                                         fontSize: 14,
                                         color: '#1a2a4a',
                                         lineHeight: 1.8,
                                     }}
                                 >
-                                    {item.body}
-                                </p>
+                                    <ContentRenderer page={currentPage as any} />
+                                </div>
                             </div>
-                        ))}
+                        ) : null}
+                    </div>
 
-                        {activeTab !== "leadin" && (
-                            <div
+                    {/* next & prev button */}
+                    {activeTab !== "leadin" && totalPages > 1 && (
+                        <div
+                            className="flex items-center justify-center gap-4 py-3"
+                            style={{
+                                borderTop: '1px solid rgba(0,79,172,0.3)',
+                            }}
+                        >
+                            <button
+                                onClick={() => setCurrentPageIndex(i => i - 1)}
+                                disabled={!hasPrev}
                                 style={{
                                     fontFamily: "'Press Start 2P', monospace",
-                                    fontSize: 14,
-                                    color: '#092c66',
-                                    textAlign: 'center',
-                                    padding: 40,
+                                    fontSize: 12,
+                                    color: hasPrev ? '#004FAC' : '#999',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: hasPrev ? 'pointer' : 'default',
+                                    padding: '4px 12px',
                                 }}
                             >
-                                Content coming soon...
-                            </div>
-                        )}
-                    </div>
+                                &lt; Prev
+                            </button>
+                            <span
+                                style={{
+                                    fontFamily: "'Press Start 2P', monospace",
+                                    fontSize: 11,
+                                    color: '#004FAC',
+                                }}
+                            >
+                                {currentPageIndex + 1} / {totalPages}
+                            </span>
+                            <button
+                                onClick={() => setCurrentPageIndex(i => i + 1)}
+                                disabled={!hasNext}
+                                style={{
+                                    fontFamily: "'Press Start 2P', monospace",
+                                    fontSize: 12,
+                                    color: hasNext ? '#004FAC' : '#999',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: hasNext ? 'pointer' : 'default',
+                                    padding: '4px 12px',
+                                }}
+                            >
+                                Next &gt;
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 <div

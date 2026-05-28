@@ -9,3 +9,8 @@ export const coderCrux = localFont({
   src: "../public/fonts/SVN-Coder-Crux.otf",
   variable: "--font-coder-crux",
 });
+
+export const teacherFont = localFont({
+  src: "../public/fonts/Teachers-VariableFont_wght.ttf",
+  variable: "--font-teacher"
+})
