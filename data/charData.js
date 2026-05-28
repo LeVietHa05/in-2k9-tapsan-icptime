@@ -9,7 +9,8 @@ export const data = {
                     "This section continues the discussion of theory and background about teenagers and economic behavior. While social environment and family background are important, research shows that personal factors also play a major role in shaping how teenagers interact with money, work, and entrepreneurship. These factors include personality, personal skills, and personal goals. Studies in entrepreneurship and education suggest that the foundations of entrepreneurial thinking often begin developing during adolescence."
                 ]
             }
-            ]
+            ],
+            bgImg: '/bg-moutntain.png'
         },
         {
             pageId: 2,
@@ -23,7 +24,8 @@ export const data = {
                     "Researchers in the Journal of Business Research have also suggested that adolescence is an important stage for developing 'occupational identity', which means that young people begin imagining their future careers. At this stage, teenagers may start thinking about becoming entrepreneurs, especially when they are exposed to business ideas or digital economic opportunities."
                 ]
             }
-            ]
+            ],
+            bgImg: '/bg-moutntain.png'
         },
         {
             pageId: 3,
@@ -53,6 +55,7 @@ export const data = {
                     ]
                 },
             ],
+            bgImg: '/bg-moutntain.png'
         },
         {
             pageId: 4,
@@ -76,6 +79,7 @@ export const data = {
                     },
                 },
             ],
+            bgImg: '/bg-moutntain.png'
         },
     ],
     family: [

@@ -32,7 +32,8 @@ const pagesData = data as unknown as Record<string, {
             headers: string[];
             rows: string[][]
         }
-    }[]
+    }[],
+    bgImg: string;
 }[]>;
 
 export default function CharacterDetail() {
@@ -97,64 +98,36 @@ export default function CharacterDetail() {
                         zIndex: 15,
                     }}
                 >
-                    <div
-                        className="border-y-9 border-[#004FAC]"
-                        style={{
-                            fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
-                            fontSize: 96,
-                            color: 'white',
-                            textShadow: '0px 0px 12px #092c66',
-                            WebkitTextStroke: `3px #092c66`,
-                            lineHeight: 0.8,
-                            alignContent: `center`,
-                            paddingBottom: 24,
-                            paddingLeft: 24
-                        }}
-                    >
-                        {tabs.find(t => t.key === activeTab)?.label}
-                    </div>
-
-                    <div
-                        className="flex flex-col gap-6"
-                        style={{
-                            padding: '24px 32px 32px',
-                            overflowY: 'auto',
-                            maxHeight: 'calc(100vh - 430px)',
-                            scrollbarWidth: 'thin',
-                            scrollbarColor: '#092c66 #e0e8f0',
-                        }}
-                    >
-                        {/* leadin tab */}
-                        {activeTab === "leadin" ? (
-                            <ul className="list-disc pl-4 space-y-4"
+                    {/* leadin tab */}
+                    {activeTab === "leadin" ? (
+                        <>
+                            <div
+                                className="border-y-9 border-[#004FAC]"
                                 style={{
-                                    fontFamily: 'var(--font-teacher), monospace',
-                                    fontSize: 14,
-                                    color: '#1a2a4a',
-                                    lineHeight: 1.8,
+                                    fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
+                                    fontSize: 96,
+                                    color: 'white',
+                                    textShadow: '0px 0px 12px #092c66',
+                                    WebkitTextStroke: `3px #092c66`,
+                                    lineHeight: 0.8,
+                                    alignContent: `center`,
+                                    paddingBottom: 24,
+                                    paddingLeft: 24
                                 }}
                             >
-                                {leadinContent.map((each, i) => (
-                                    <li key={i} className="text-2xl">
-                                        {each}
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : currentPage ? (
-                            // not leadin tab
-                            <div>
-                                <h2
-                                    style={{
-                                        fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
-                                        fontSize: 24,
-                                        color: '#004FAC',
-                                        textShadow: '1px 1px 0px rgba(0,79,172,0.2)',
-                                        marginBottom: 16,
-                                    }}
-                                >
-                                    {currentPage.title}
-                                </h2>
-                                <div
+                                Lead in
+                            </div>
+                            <div
+                                className="flex flex-col gap-6"
+                                style={{
+                                    padding: '24px 32px 32px',
+                                    overflowY: 'auto',
+                                    maxHeight: 'calc(100vh - 430px)',
+                                    scrollbarWidth: 'thin',
+                                    scrollbarColor: '#092c66 #e0e8f0',
+                                }}
+                            >
+                                <ul className="list-disc pl-4 space-y-4"
                                     style={{
                                         fontFamily: 'var(--font-teacher), monospace',
                                         fontSize: 14,
@@ -162,11 +135,58 @@ export default function CharacterDetail() {
                                         lineHeight: 1.8,
                                     }}
                                 >
-                                    <ContentRenderer page={currentPage as any} />
+                                    {leadinContent.map((each, i) => (
+                                        <li key={i} className="text-2xl">
+                                            {each}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </>
+                    ) : currentPage ? (
+
+                        <>
+                            <div
+                                className="border-y-9 border-[#004FAC]"
+                                style={{
+                                    height: 140,
+                                    fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
+                                    fontSize: tabs.find(t => t.key === activeTab)?.label == currentPage.title ? 96 : 48,
+                                    color: 'white',
+                                    WebkitTextStroke: tabs.find(t => t.key === activeTab)?.label == currentPage.title ? `3px #092c66` : `2px #092c66`,
+                                    lineHeight: tabs.find(t => t.key === activeTab)?.label == currentPage.title ? 0.8 : 1.0,
+                                    alignContent: `center`,
+                                    paddingBottom: 24,
+                                    paddingLeft: 24
+                                }}
+                            >
+                                {currentPage.title}
+                            </div>
+                            <div
+                                className="flex flex-col gap-6"
+                                style={{
+                                    padding: '24px 32px 32px',
+                                    overflowY: 'auto',
+                                    height: 'calc(100vh - 500px)',
+                                    scrollbarWidth: 'thin',
+                                    scrollbarColor: '#092c66 #e0e8f0',
+                                }}
+                            >
+                                <div>
+                                    <div
+                                        style={{
+                                            fontFamily: 'var(--font-teacher), monospace',
+                                            // fontSize: 14,
+                                            color: '#1a2a4a',
+                                            lineHeight: 1.8,
+                                        }}
+                                    >
+                                        <ContentRenderer page={currentPage as any} />
+                                    </div>
                                 </div>
                             </div>
-                        ) : null}
-                    </div>
+                        </>
+                    ) : null}
 
                     {/* next & prev button */}
                     {activeTab !== "leadin" && totalPages > 1 && (
@@ -242,6 +262,6 @@ export default function CharacterDetail() {
                     </Link>
                 </div>
             </div>
-        </main>
+        </main >
     );
 }

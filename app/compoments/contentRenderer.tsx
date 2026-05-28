@@ -9,6 +9,7 @@ type CharacterPage = {
   pageId: number;
   title: string;
   data: DataItem[];
+  bgImg: string
 };
 
 export default function ContentRenderer({ page }: { page: CharacterPage }) {
