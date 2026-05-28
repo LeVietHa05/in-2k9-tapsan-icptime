@@ -33,7 +33,7 @@ const pagesData = data as unknown as Record<string, {
             rows: string[][]
         }
     }[],
-    bgImg: string;
+    bgImg: { height: string | number, link: string }[];
 }[]>;
 
 export default function CharacterDetail() {
@@ -50,15 +50,37 @@ export default function CharacterDetail() {
     return (
         <main className="w-full min-h-screen flex items-center justify-center">
             <div className="relative w-full max-w-[1440px] h-screen mx-auto overflow-hidden">
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: "url(/bg-sky2.png)" }}
-                />
-                <div
-                    className="absolute bottom-0 left-0 w-full bg-cover bg-center bg-no-repeat"
-                    style={{ height: 160, backgroundImage: "url(/bg-ground.PNG)" }}
-                />
+                {/* BG */}
+                {
+                    activeTab == "leadin" ? (
+                        <div>
+                            <div
+                                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                                style={{ backgroundImage: "url(/bg-sky2.png)" }}
+                            />
+                            <div
+                                className="absolute bottom-0 left-0 w-full bg-cover bg-center bg-no-repeat"
+                                style={{ height: 160, backgroundImage: "url(/bg-ground.PNG)" }}
+                            />
+                        </div>
+                    ) : currentPage ? (
+                        <div>
+                            {(pagesData as any)[activeTab][0].bgImg.map((each: { height: string | number, link: string }, i: number) => {
+                                return (
+                                    <div key={i}
+                                        className={`${+each.height > 1 ? 'bottom-0 left-0 w-full' : 'inset-0'} absolute  bg-cover bg-center bg-no-repeat`}
+                                        style={{
+                                            height: each.height,
+                                            backgroundImage: `url(${each.link})`
+                                        }}>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    ) : null
+                }
 
+                {/* TABS */}
                 <div
                     className="absolute top-0 left-0 right-0 flex justify-center gap-8 py-6"
                     style={{ zIndex: 20 }}
@@ -85,13 +107,14 @@ export default function CharacterDetail() {
                     ))}
                 </div>
 
+                {/* CONTENT */}
                 <div
                     className="absolute flex flex-col"
                     style={{
                         top: 150,
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        width: 960,
+                        width: 1178,
                         maxHeight: 'calc(100vh - 280px)',
                         background: '#F5F5F5CC',
                         boxShadow: 'inset -4px -4px 0 0 rgba(0,0,0,0.2), inset 4px 4px 0 0 rgba(255,255,255,0.1)',
@@ -177,7 +200,7 @@ export default function CharacterDetail() {
                                         style={{
                                             fontFamily: 'var(--font-teacher), monospace',
                                             // fontSize: 14,
-                                            color: '#1a2a4a',
+                                            color: '#003691',
                                             lineHeight: 1.8,
                                         }}
                                     >

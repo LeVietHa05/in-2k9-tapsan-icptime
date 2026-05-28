@@ -43,7 +43,7 @@ export default function ContentRenderer({ page }: { page: CharacterPage }) {
                 <thead>
                   <tr className="bg-[#092c66]/10">
                     {item.tableData.headers.map((h, i) => (
-                      <th key={i} className="border border-[#092c66] p-2 text-2xl font-bold text-[#092c66]">
+                      <th key={i} className="border border-[#092c66] p-2 text-2xl font-bold  ">
                         {h}
                       </th>
                     ))}
@@ -53,7 +53,7 @@ export default function ContentRenderer({ page }: { page: CharacterPage }) {
                   {item.tableData.rows.map((row, i) => (
                     <tr key={i}>
                       {row.map((cell, j) => (
-                        <td key={j} className="border border-[#092c66] p-2 text-2xl text-[#1a2a4a]">
+                        <td key={j} className="border border-[#092c66] p-2 text-2xl  ">
                           {cell}
                         </td>
                       ))}

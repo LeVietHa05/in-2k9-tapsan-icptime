@@ -10,7 +10,7 @@ export const data = {
                 ]
             }
             ],
-            bgImg: '/bg-moutntain.png'
+            bgImg: [{ height: 'full', link: '/bg-mountain.png' }]
         },
         {
             pageId: 2,
@@ -25,7 +25,7 @@ export const data = {
                 ]
             }
             ],
-            bgImg: '/bg-moutntain.png'
+            bgImg: [{ height: 'full', link: '/bg-mountain.png' }]
         },
         {
             pageId: 3,
@@ -55,7 +55,7 @@ export const data = {
                     ]
                 },
             ],
-            bgImg: '/bg-moutntain.png'
+            bgImg: [{ height: 'full', link: '/bg-mountain.png' }]
         },
         {
             pageId: 4,
@@ -79,11 +79,41 @@ export const data = {
                     },
                 },
             ],
-            bgImg: '/bg-moutntain.png'
+            bgImg: [{ height: 'full', link: '/bg-mountain.png' }]
         },
     ],
     family: [
-        // Cấu trúc 10 màn hình tương tự cho tab Family
+        {
+            pageId: 1,
+            title: "I. Income constraint → Consumption pressure ",
+            data: [{
+                type: "bullets", // Loại màn hình chỉ có chữ  ,
+                content: [
+                    "Household income affects financial pressure and the need for teenagers to work."
+                ]
+            },
+            {
+                type: "table", // Loại màn hình chứa bảng dữ liệu  
+                tableData: {
+                    headers: ["Lower-income households", "Higher-income households"],
+                    rows: [
+                        ["Limited resources → pressure on basic consumption", "Financially supported by parents"],
+                        ["Content crIncome = necessary, not optionaleation", "Lower need for additional income"],
+                        ["Teen work = response to economic pressure", "Focus on education & development"]
+                    ]
+                },
+            },
+            {
+                type: "bullets", // Loại màn hình có danh sách gạch đầu dòng ,
+                content: [
+                    "ILO (2021): ~160 million children work globally → shows early labour is widespread",
+                    "World Bank (2022): low-income families face financial shocks → increases pressure to earn",
+                    "GSO Vietnam (2023): child labour mainly in rural areas → linked to lower household income"
+                ]
+            }
+            ],
+            bgImg: [{ height: 'full', link: '/bg-sky.png' }, { height: 160, link: '/bg-ground.png' }]
+        },
     ],
     external: [
         // Cấu trúc 10 màn hình tương tự cho tab External
