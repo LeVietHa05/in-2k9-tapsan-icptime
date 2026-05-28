@@ -1,8 +1,8 @@
 import Link from "next/link";
-export default function Footer() {
+export default function Footer({ isChoosingChar = false }: { isChoosingChar?: boolean }) {
     return (
         <div className="flex flex-col items-center gap-4 border-t-2 text-[#ffd800]" style={{ marginTop: `24px` }}>
-            <Link
+            {!isChoosingChar && <Link
                 href="/characters"
                 style={{
                     fontFamily: "var(--font-determination-sans), 'Press Start 2P', monospace",
@@ -16,7 +16,7 @@ export default function Footer() {
                 onMouseOut={e => { e.currentTarget.style.color = '#ffd800'; }}
             >
                 Choose your Characters &gt;
-            </Link>
+            </Link>}
             <Link
                 href="/"
                 style={{
@@ -30,7 +30,7 @@ export default function Footer() {
                 onMouseOver={e => { e.currentTarget.style.color = '#fff'; }}
                 onMouseOut={e => { e.currentTarget.style.color = '#ffd800'; }}
             >
-                &lt; Home
+                &lt; Back To Home
             </Link>
         </div>
     )
