@@ -289,6 +289,62 @@ export const data = {
             ],
             bgImg: [{ height: 'full', link: '/bg-city.png' }, { height: 160, link: '/bg-ground.png' }]
         },
+        {
+            pageId: 2,
+            title: null,
+            data: [{
+                type: "mindmap",
+                mindmapData: {
+                    centerLabel: "External Factors Affecting \n Teenagers’ Participation \n in Part-Time Work",
+                    nodes: [
+                        {
+                            label: "Social Media and Consumerism",
+                            items: [
+                                { text: "Urban teens influenced by digital lifestyles and peer pressure.", style: "bullet" },
+                                { text: "OECD (2017):", style: "bold" },
+                                { text: "well-being linked to identity & belonging shaped online.", style: "bullet" },
+                                { text: "Hanoi living cost ~6.8 million VND/month > teen income.", style: "bullet" },
+                                { text: "Teens work to keep up socially, not just for basic needs.", style: "bullet" },
+                            ]
+                        },
+                        {
+                            label: "Legal Frameworks",
+                            items: [
+                                { text: "Vietnamese Labour Code (2019):", style: "bold" },
+                                { text: "under 13 → arts/sports only.", style: "bullet" },
+                                { text: "13-15 → light work.", style: "bullet" },
+                                { text: "15-18 → restricted jobs.", style: "bullet" },
+                                { text: "Protects minors but confines them to low-skill, low-paying sectors.", style: "bullet" },
+                                { text: "Evidence:", style: "bold" },
+                                { text: "teenagers earn ~3.0 million VND/month. Adults earn 7.1-8.4 million VND/month.", style: "bullet" },
+                                { text: "Work is allowed but financial returns are limited, making it a compromise with education.", style: "bullet" },
+                            ]
+                        },
+                        {
+                            label: "Rural-Urban Divide",
+                            items: [
+                                { text: "Rural: work = economic survival, may disrupt education.", style: "bullet" },
+                                { text: "Urban: work = independence + social pressure + high living costs.", style: "bullet" },
+                                { text: "Different causes, same result: early workforce entry.", style: "bullet" },
+                            ]
+                        },
+                        {
+                            label: "Poverty and Economic Pressure",
+                            items: [
+                                { text: "Main driver:", style: "label" },
+                                { text: "household financial hardship.", style: "normal" },
+                                { text: "UNICEF (2020):", style: "label" },
+                                { text: "8.1% rural child labour rate.", style: "bullet" },
+                                { text: "4.6% urban child labour rate.", style: "bullet" },
+                                { text: "Even small income matters.", style: "bullet" },
+                                { text: "Work becomes family obligation, not personal choice.", style: "bullet" },
+                            ]
+                        },
+                    ],
+                },
+            }],
+            bgImg: [{ height: 'full', link: '/bg-city.png' }, { height: 160, link: '/bg-ground.png' }]
+        },
     ]
 };
 

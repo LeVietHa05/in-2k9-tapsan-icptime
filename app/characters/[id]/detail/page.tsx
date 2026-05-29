@@ -185,7 +185,7 @@ export default function CharacterDetail() {
                     ) : currentPage ? (
 
                         <>
-                            <div
+                            {currentPage.title && <div
                                 className="border-y-9 border-[#004FAC]"
                                 style={{
                                     height: 140,
@@ -201,13 +201,13 @@ export default function CharacterDetail() {
                                 }}
                             >
                                 {currentPage.title}
-                            </div>
+                            </div>}
                             <div
                                 className="flex flex-col gap-6"
                                 style={{
                                     padding: '24px 32px 32px',
                                     overflowY: 'auto',
-                                    height: 'calc(100vh - 500px)',
+                                    height: currentPage.title ? 'calc(100vh - 500px)' : '',
                                     scrollbarWidth: 'thin',
                                     scrollbarColor: '#092c66 #e0e8f0',
                                 }}
