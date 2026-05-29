@@ -232,7 +232,7 @@ export default function CharacterDetail() {
                     {activeTab !== "leadin" && totalPages > 1 && (
                         <>
                             <button
-                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200"
+                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200 hover:bg-black/10"
                                 onClick={() => setCurrentPageIndex(i => i - 1)}
                                 disabled={!hasPrev}
                                 style={{
@@ -250,7 +250,7 @@ export default function CharacterDetail() {
                                 <Image src="/prev.svg" alt="Prev" width={48} height={48} />
                             </button>
                             <button
-                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200"
+                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200 hover:bg-black/10"
                                 onClick={() => setCurrentPageIndex(i => i + 1)}
                                 disabled={!hasNext}
                                 style={{

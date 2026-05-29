@@ -345,6 +345,30 @@ export const data = {
             }],
             bgImg: [{ height: 'full', link: '/bg-city.png' }, { height: 160, link: '/bg-ground.png' }]
         },
+        {
+            pageId: 1,
+            title: "External Factors",
+            data: [{
+                type: "text_only",
+                option: "font-bold",
+                content: [
+                    "REFERENCES"
+                ]
+            },
+            {
+                type: "bullets",
+                option: "list-[lower-alpha]! pl-12",
+                content: [
+                    "Nguyen, T. T. (2021). Child labor and poverty reduction in Vietnam: Issues and policy implications. Retrieved from https://www.researchgate.net/publication/356674264",
+                    "UNICEF. (2020). Child labour in Vietnam. UNICEF. Retrieved from https://www.unicef.org/vietnam/media/8671/file/Child%20labour.pdf",
+                    "OECD. (2017). Youth well-being policy review of Vietnam. OECD Publishing. Retrieved from https://www.oecd.org/content/dam/oecd/en/publications/reports/2017/11/youth-well-being-policy-review-of-viet-nam_305e224f-en.pdf",
+                    "UNICEF. (n.d.). Child labour. Retrieved from https://www.unicef.org/vietnam/child-labour",
+                    "Work No Child’s Business. (2023). Study on youth employment in Vietnam. Retrieved from https://www.childrights-business.org/public/uploads/files/20240913/Work-No%20Child%27s%20Business_Study%20on%20Youth%20Emplyment%20in%20Vietnam_2023.pdf"
+                ]
+            }
+            ],
+            // bgImg: [{ height: 'full', link: '/bg-city.png' }, { height: 160, link: '/bg-ground.png' }]
+        },
     ]
 };
 
