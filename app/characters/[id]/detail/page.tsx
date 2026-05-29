@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Header from "@/app/compoments/header";
+// import Header from "@/app/compoments/header";
 import { data } from "@/data/charData";
 import ContentRenderer from "@/app/compoments/contentRenderer";
 import Image from "next/image";
@@ -28,6 +28,7 @@ const pagesData = data as unknown as Record<string, {
     title: string;
     data: {
         type: string;
+        option?: string;
         content?: string[];
         tableData?: {
             headers: string[];
@@ -97,7 +98,7 @@ export default function CharacterDetail() {
                                 textShadow: '3px 3px 0px #092c66',
                                 background: 'none',
                                 border: 'none',
-                                borderBottom: activeTab === tab.key ? '2px solid #ffd800' : '2px solid transparent',
+                                borderBottom: activeTab === tab.key ? '5px solid #003691' : '5px solid transparent',
                                 padding: '8px 16px 4px',
                                 cursor: 'pointer',
                                 transition: 'all 0.1s',
@@ -195,7 +196,8 @@ export default function CharacterDetail() {
                                     lineHeight: tabs.find(t => t.key === activeTab)?.label == currentPage.title ? 0.8 : 1.0,
                                     alignContent: `center`,
                                     paddingBottom: 24,
-                                    paddingLeft: 24
+                                    paddingLeft: 24,
+                                    whiteSpace: 'pre-wrap'
                                 }}
                             >
                                 {currentPage.title}

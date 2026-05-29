@@ -1,5 +1,6 @@
 type DataItem = {
   type: "text_only" | "bullets" | "table";
+  option?: string,
   content?: string[];
   tableData?: { headers: string[]; rows: string[][] };
   footerText?: string;
@@ -20,7 +21,7 @@ export default function ContentRenderer({ page }: { page: CharacterPage }) {
           return (
             <div key={idx}>
               {item.content?.map((p, i) => (
-                <p key={i} className="mb-4 last:mb-0 text-2xl">{p}</p>
+                <p key={i} className={`${item.option} mb-2 last:mb-0 text-2xl`}>{p}</p>
               ))}
             </div>
           );
@@ -28,7 +29,7 @@ export default function ContentRenderer({ page }: { page: CharacterPage }) {
 
         if (item.type === "bullets") {
           return (
-            <ul key={idx} className="list-disc pl-5 space-y-3 text-2xl">
+            <ul key={idx} className={`${item.option} list-disc pl-5 space-y-3 text-2xl`}>
               {item.content?.map((b, i) => (
                 <li key={i}>{b}</li>
               ))}
