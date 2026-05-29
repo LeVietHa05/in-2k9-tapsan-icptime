@@ -151,7 +151,7 @@ export const data = {
                 ]
             }
             ],
-            bgImg: [{ height: 'full', link: '/bg-sky.png' }, { height: 160, link: '/bg-ground.png' }]
+            bgImg: [{ height: 'full', link: '/bg-sky.PNG' }, { height: 160, link: '/bg-ground.PNG' }]
         },
         {
             pageId: 2,
