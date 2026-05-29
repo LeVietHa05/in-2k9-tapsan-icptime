@@ -6,6 +6,7 @@ import Link from "next/link";
 import Header from "@/app/compoments/header";
 import { data } from "@/data/charData";
 import ContentRenderer from "@/app/compoments/contentRenderer";
+import Image from "next/image";
 
 const tabs = [
     { key: "leadin", label: "Lead in" },
@@ -109,11 +110,10 @@ export default function CharacterDetail() {
 
                 {/* CONTENT */}
                 <div
-                    className="absolute flex flex-col"
+                    className="flex flex-col"
                     style={{
-                        top: 150,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
+                        position: 'relative',
+                        margin: '150px auto 0',
                         width: 1178,
                         maxHeight: 'calc(100vh - 280px)',
                         background: '#F5F5F5CC',
@@ -135,10 +135,25 @@ export default function CharacterDetail() {
                                     lineHeight: 0.8,
                                     alignContent: `center`,
                                     paddingBottom: 24,
-                                    paddingLeft: 24
+                                    paddingLeft: 24,
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: 'center'
                                 }}
                             >
-                                Lead in
+                                <div>
+                                    Lead in
+                                </div>
+                                <Link
+                                    className="text-[40px] hover:text-[#ffd800] mt-4 mr-8"
+                                    style={{
+                                        textShadow: '0px 0px 12px #092c66',
+                                        WebkitTextStroke: `1px #092c66`,
+
+                                    }}
+                                    href={'https://drive.google.com/file/d/1HE9g8ZIglpdyu1KCf1nrCkc1NuDGrGje/view?usp=drive_link'}>
+                                    Talk with Character
+                                </Link>
                             </div>
                             <div
                                 className="flex flex-col gap-6"
@@ -213,52 +228,90 @@ export default function CharacterDetail() {
 
                     {/* next & prev button */}
                     {activeTab !== "leadin" && totalPages > 1 && (
-                        <div
-                            className="flex items-center justify-center gap-4 py-3"
-                            style={{
-                                borderTop: '1px solid rgba(0,79,172,0.3)',
-                            }}
-                        >
+                        <>
                             <button
+                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200"
                                 onClick={() => setCurrentPageIndex(i => i - 1)}
                                 disabled={!hasPrev}
                                 style={{
-                                    fontFamily: "'Press Start 2P', monospace",
-                                    fontSize: 12,
-                                    color: hasPrev ? '#004FAC' : '#999',
-                                    background: 'none',
+                                    position: 'absolute',
+                                    left: -80,
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    // background: 'none',
                                     border: 'none',
                                     cursor: hasPrev ? 'pointer' : 'default',
-                                    padding: '4px 12px',
+                                    opacity: hasPrev ? 1 : 0.3,
+                                    padding: `12px 12px 12px 0`,
                                 }}
                             >
-                                &lt; Prev
+                                <Image src="/prev.svg" alt="Prev" width={48} height={48} />
                             </button>
-                            <span
-                                style={{
-                                    fontFamily: "'Press Start 2P', monospace",
-                                    fontSize: 11,
-                                    color: '#004FAC',
-                                }}
-                            >
-                                {currentPageIndex + 1} / {totalPages}
-                            </span>
                             <button
+                                className="bg-white/30 backdrop-blur-sm rounded-full hover:scale-x-110 transition-all duration-200"
                                 onClick={() => setCurrentPageIndex(i => i + 1)}
                                 disabled={!hasNext}
                                 style={{
-                                    fontFamily: "'Press Start 2P', monospace",
-                                    fontSize: 12,
-                                    color: hasNext ? '#004FAC' : '#999',
-                                    background: 'none',
+                                    position: 'absolute',
+                                    right: -80,
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    // background: 'none',
                                     border: 'none',
                                     cursor: hasNext ? 'pointer' : 'default',
-                                    padding: '4px 12px',
+                                    opacity: hasNext ? 1 : 0.3,
+                                    padding: `12px 0px 12px 12px`,
                                 }}
                             >
-                                Next &gt;
+                                <Image src="/next.svg" alt="Next" width={48} height={48} />
                             </button>
-                        </div>
+                            <div
+                                className="flex items-center justify-center gap-4 py-3"
+                                style={{
+                                    borderTop: '1px solid rgba(0,79,172,0.3)',
+                                }}
+                            >
+                                <button
+                                    onClick={() => setCurrentPageIndex(i => i - 1)}
+                                    disabled={!hasPrev}
+                                    style={{
+                                        fontFamily: "'Press Start 2P', monospace",
+                                        fontSize: 12,
+                                        color: hasPrev ? '#004FAC' : '#999',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: hasPrev ? 'pointer' : 'default',
+                                        padding: '4px 12px',
+                                    }}
+                                >
+                                    &lt; Prev
+                                </button>
+                                <span
+                                    style={{
+                                        fontFamily: "'Press Start 2P', monospace",
+                                        fontSize: 11,
+                                        color: '#004FAC',
+                                    }}
+                                >
+                                    {currentPageIndex + 1} / {totalPages}
+                                </span>
+                                <button
+                                    onClick={() => setCurrentPageIndex(i => i + 1)}
+                                    disabled={!hasNext}
+                                    style={{
+                                        fontFamily: "'Press Start 2P', monospace",
+                                        fontSize: 12,
+                                        color: hasNext ? '#004FAC' : '#999',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: hasNext ? 'pointer' : 'default',
+                                        padding: '4px 12px',
+                                    }}
+                                >
+                                    Next &gt;
+                                </button>
+                            </div>
+                        </>
                     )}
                 </div>
 
