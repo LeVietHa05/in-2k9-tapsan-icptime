@@ -10,8 +10,8 @@ const pressStart2P = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Tập San 2009",
-  description: "TVB Fan Site - 2K9 Tập San",
+  title: "The Icption",
+  description: "The Icption - Tap San",
 };
 
 export default function RootLayout({
