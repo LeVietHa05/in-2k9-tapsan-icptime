@@ -1,10 +1,14 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 import Header from "@/app/compoments/header";
-import Image from "next/image"; 
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { data } from "@/data/charData";
 
-export default function Character1() {
+export default function CharacterPage() {
+  const { id } = useParams<{ id: string }>();
+  const userData = data[Number(id) - 1];
   return (
     <main className="w-full min-h-screen flex items-center justify-center">
       <div className="relative w-full max-w-[1440px] h-screen mx-auto overflow-hidden">
@@ -26,15 +30,15 @@ export default function Character1() {
         </div>
         <div>
           <Image
-            src="/char-1.svg"
+            src={`/char-${id}.svg`}
             alt="Character"
             width={500}
             height={500}
             style={{
-              position: 'absolute',
+              position: "absolute",
               bottom: 160,
-              left: '30%',
-              transform: 'translateX(-50%)',
+              left: "25%",
+              transform: "translateX(-50%)",
               zIndex: 5,
             }}
           />
@@ -47,7 +51,7 @@ export default function Character1() {
             zIndex: 10,
           }}
         >
-          <Link href={'/characters/1/detail'}>
+          <Link href={`/characters/${id}/detail`}>
             <Image
               width={195}
               height={51}
@@ -57,32 +61,23 @@ export default function Character1() {
             />
           </Link>
           <div
-            className=" space-y-2 *:leading-8 bg-black/15 backdrop-blur-sm p-4 rounded-lg *:before:content-['+'] *:before:px-4"
+            className="max-w-2xl space-y-2 *:leading-8 bg-black/15 backdrop-blur-sm p-4 rounded-lg *:before:content-['+'] *:before:px-4"
             style={{
               fontFamily: "var(--font-coder-crux), 'Press Start 2P', monospace",
               fontSize: 40,
-              textShadow: '3px 3px 0px #092c66',
-              textAlign: 'left',
-              color: "#F6EBD8"
+              textShadow: "3px 3px 0px #092c66",
+              textAlign: "left",
+              color: "#F6EBD8",
             }}
           >
-            <div style={{ marginBottom: 8 }}>
-              Name:  Nguyen Ha Anh
-            </div>
-            <div style={{ marginBottom: 4, }}>
-              Age: 15
-            </div>
-            <div style={{}}>
-              Occupation: Student & Actress
-            </div>
-            <div style={{}}>
-              MBTI: ENFP
-            </div>
-            <div style={{}}>
-              Favourite things about her job: <br />
-              To be able to meet so many <br />
-              cool people and appear on screen
-            </div>
+            <div style={{ marginBottom: 8 }}>Name: {userData.infotab.name}</div>
+            <div style={{ marginBottom: 4 }}>Age: {userData.infotab.age}</div>
+            <div style={{}}>Occupation: {userData.infotab.occupation}</div>
+            {userData.infotab.moreinfo.map((each, i) => {
+              return <div key={i} dangerouslySetInnerHTML={{__html: each}}>
+                
+              </div>
+            })}
           </div>
         </div>
 
@@ -90,11 +85,11 @@ export default function Character1() {
           className="absolute text-white text-center select-none"
           style={{
             bottom: 100,
-            left: '50%',
-            transform: 'translateX(-50%)',
+            left: "50%",
+            transform: "translateX(-50%)",
             fontFamily: "'Press Start 2P', monospace",
             fontSize: 24,
-            textShadow: '4px 4px 0px #092c66',
+            textShadow: "4px 4px 0px #092c66",
             zIndex: 10,
           }}
         >

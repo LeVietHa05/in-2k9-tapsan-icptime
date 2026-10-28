@@ -37,7 +37,7 @@ export default function CharactersPage() {
                 className="transition-transform duration-150 hover:scale-110 block"
               >
                 <Image
-                  src="/char-1.svg"
+                  src={`/char-${id}.svg`}
                   alt={`Character ${id}`}
                   width={308}
                   height={325}
@@ -45,7 +45,7 @@ export default function CharactersPage() {
                   style={{
                     width: 308,
                     height: 325,
-                    objectFit: 'cover',
+                    objectFit: 'contain',
                     // border: '2px solid #0055cc',
                     // boxShadow: 'inset -2px -2px 0 0 rgba(0,0,0,0.3)',
                     // background: 'rgba(0, 54, 145, 0.5)',
